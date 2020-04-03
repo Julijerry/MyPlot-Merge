@@ -1,5 +1,5 @@
 # MyPlot-Merge
-Plot Merging System working by MyPlot for PocketMine-MP
+Plot Merging System working by MyPlot for PocketMine-MP that let player build between their plots (on the road)
 
 # Server List
 Server, that use my system:
