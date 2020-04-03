@@ -38,31 +38,30 @@ class Main extends PluginBase
         $this->getLogger()->info("MyPlotMerge von Crasher508 wurde aktiviert");
     }
 
-	public function isPlotMerged(Block $block, Player $player){
-		$username = $player->getName();
-		$x = $block->getX();
-		$y = $block->getY();
-		$z = $block->getZ();
-		$level = $block->getLevel();
-		$pos = new Position($x, $y, $z, $level);
-		$levelname = $level->getFolderName();
-		$plotLevel = $this->myplot->getLevelSettings($levelname);
-		$plotSize = $plotLevel->plotSize;
-	   $nordplot = $pos->getSide(Vector3::SIDE_NORTH, $plotSize);
-	   $suedplot = $pos->getSide(Vector3::SIDE_SOUTH, $plotSize);
-	   $eastplot = $pos->getSide(Vector3::SIDE_EAST, $plotSize);
-	   $westplot = $pos->getSide(Vector3::SIDE_WEST, $plotSize);
-	   $nordplot = $this->myplot->getPlotByPosition($nordplot);
-	   $suedplot = $this->myplot->getPlotByPosition($suedplot);
-	   $eastplot = $this->myplot->getPlotByPosition($eastplot);
-	   $westplot = $this->myplot->getPlotByPosition($westplot);
-	   if(($nordplot !== null) and ($nordplot->owner == $username or $nordplot->isHelper($username) or $nordplot->isHelper("*")) and ($suedplot !== null) and ($suedplot->owner == $username or $suedplot->isHelper($username) or $suedplot->isHelper("*"))){
-	      return true;
-	   }elseif(($eastplot !== null) and ($eastplot->owner == $username or $eastplot->isHelper($username) or $eastplot->isHelper("*")) and ($westplot !== null) and ($westplot->owner == $username or $westplot->isHelper($username) or $westplot->isHelper("*"))){
-	      return true;
-	   }else{
-		#$player->sendMessage("§cNope");
-		  return false;
-	   }
+    public function isPlotMerged(Block $block, Player $player){
+	$username = $player->getName();
+	$x = $block->getX();
+	$y = $block->getY();
+	$z = $block->getZ();
+	$level = $block->getLevel();
+	$pos = new Position($x, $y, $z, $level);
+	$levelname = $level->getFolderName();
+	$plotLevel = $this->myplot->getLevelSettings($levelname);
+        $plotSize = $plotLevel->plotSize;
+	$nordplot = $pos->getSide(Vector3::SIDE_NORTH, $plotSize);
+	$suedplot = $pos->getSide(Vector3::SIDE_SOUTH, $plotSize);
+	$eastplot = $pos->getSide(Vector3::SIDE_EAST, $plotSize);
+	$westplot = $pos->getSide(Vector3::SIDE_WEST, $plotSize);
+        $nordplot = $this->myplot->getPlotByPosition($nordplot);
+	$suedplot = $this->myplot->getPlotByPosition($suedplot);
+	$eastplot = $this->myplot->getPlotByPosition($eastplot);
+	$westplot = $this->myplot->getPlotByPosition($westplot);
+	if(($nordplot !== null) and ($nordplot->owner == $username or $nordplot->isHelper($username) or $nordplot->isHelper("*")) and ($suedplot !== null) and ($suedplot->owner == $username or $suedplot->isHelper($username) or $suedplot->isHelper("*"))){
+	   return true;
+        }elseif(($eastplot !== null) and ($eastplot->owner == $username or $eastplot->isHelper($username) or $eastplot->isHelper("*")) and ($westplot !== null) and ($westplot->owner == $username or $westplot->isHelper($username) or $westplot->isHelper("*"))){
+	   return true;
+	}else{
+	   return false;
 	}
+    }
 }
